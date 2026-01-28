@@ -39,8 +39,7 @@ Before computing derivatives, let's build intuition about the profit function's 
 As trade size x increases from 0, what happens to profit P(x)?
 
 Ans: Profit grows initially, reaches a peak, then decreases
-
-    why?
+    WHY?
     
 The profit function is a downward-opening parabola (negative coefficient on x²). It starts at 0, increases as the linear term dominates, reaches a maximum at the vertex, then decreases as the quadratic market impact term dominates. This is why there's an optimal trade size, too small leaves money on the table, too large gets crushed by market impact.
 
@@ -62,7 +61,6 @@ Example:
 Given that β>0, what does P ′′(x)=−2β<0 tell us about the profit function?
 
 Ans: The function is concave (opens downward), so the critical point is a maximum
-
       WHY?
       
 A negative second derivative means the function is concave (curves downward like an upside-down bowl). For concave functions, critical points are maxima. This confirms our x* is indeed the profit-maximizing trade size, not a profit-minimizing one.
@@ -70,7 +68,6 @@ A negative second derivative means the function is concave (curves downward like
 What does this concavity (negative second derivative) mean for decision-making under costs?
 
 Ans: Diminishing returns gurantee an optimal interior point where costs start to outweigh benefits
-
     WHY?
 
 Negative concavity means diminishing marginal returns: each additional unit contributes less than the previous one. Eventually, the marginal cost exceeds the marginal benefit, guaranteeing an interior maximum exists. This is why 'more is not always better' in trading, there's a sweet spot where you stop.
