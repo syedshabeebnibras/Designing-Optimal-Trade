@@ -34,9 +34,11 @@ The profit function is a downward-opening parabola (negative coefficient on x²)
 
 1.3 Finding the Optimal Trade Size
 To find the optimal trade size, we take the derivative and set it to zero:
+
                               P'(x) = α − 2βx − c = 0
 
 Solving for x:
+
                               x* = (α − c) / 2β
 
 ​
