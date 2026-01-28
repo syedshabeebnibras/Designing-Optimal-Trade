@@ -15,12 +15,30 @@ Market impact (βx²): Larger trades move the market against you, increasing exe
 Transaction costs (c·x): Linear costs such as commissions, fees, and bid–ask spread.
 We model profit as a function of trade size x:
 
-𝑃(𝑥) = 𝛼𝑥 − 𝛽𝑥**2 − 𝑐𝑥
+              𝑃(𝑥) = 𝛼𝑥 − βx² − 𝑐𝑥
 
 Where:
 x = number of shares traded
 αx = expected profit
-βx**2 = market impact cost
+βx² = market impact cost
 cx = transaction cost
 Expected returns increase profit, while market impact and transaction costs reduce it.
 This function captures a realistic trading constraint: bigger trades are not always better.
+
+### **1.2 Shape Analysis Before Calculus**
+Before computing derivatives, let's build intuition about the profit function's shape.
+As trade size x increases from 0, what happens to profit P(x)?
+Ans: Profit grows initially, reaches a peak, then decreases
+    why?
+The profit function is a downward-opening parabola (negative coefficient on x²). It starts at 0, increases as the linear term dominates, reaches a maximum at the vertex, then decreases as the quadratic market impact term dominates. This is why there's an optimal trade size, too small leaves money on the table, too large gets crushed by market impact.
+
+1.3 Finding the Optimal Trade Size
+To find the optimal trade size, we take the derivative and set it to zero:
+                              P'(x) = α − 2βx − c = 0
+
+Solving for x:
+                              x* = (α − c) / 2β
+
+​
+ 
+
