@@ -70,7 +70,51 @@ What does this concavity (negative second derivative) mean for decision-making u
 Ans: Diminishing returns gurantee an optimal interior point where costs start to outweigh benefits
     WHY?
 
-Negative concavity means diminishing marginal returns: each additional unit contributes less than the previous one. Eventually, the marginal cost exceeds the marginal benefit, guaranteeing an interior maximum exists. This is why 'more is not always better' in trading, there's a sweet spot where you stop.
+Negative concavity means diminishing marginal returns: each additional unit contributes less than the previous one. Eventually, the marginal cost exceeds the marginal benefit, guaranteeing an interior maximum exists. This is why 'more is not always better in trading, there's a sweet spot where you stop.
+
+### **1.5 Sensitivity Analysis**
+How does the optimal trade size change when parameters change?
+
+Recall the formula:
+
+x∗ = (α − c) /  2β 
+​
+where 
+
+α is expected return per share, 
+
+c is transaction cost per share, and 
+
+β is the market impact coefficient.
+
+If transaction costs c increase, what happens to the optimal trade size x∗ ?
+
+Ans: x* decreases (trade less)
+WHY?
+
+From x* = (α - c) / (2β), increasing c decreases the numerator, so x* decreases. Higher costs make trading less attractive, so you should trade smaller sizes. This is intuitive, when trading is expensive, do less of it.
+
+### **1.6 Implementation: Profit Function?**
+Now let's implement what we've learned. Write a Python function that computes the profit and finds the optimal trade size.
+
+```python
+def profit_analysis(alpha, beta, c):
+    """
+    Analyze the profit function P(x) = αx - βx² - cx
+    """
+    import numpy as np
+
+    # Optimal trade size from first-order condition
+    optimal_x = (alpha - c) / (2 * beta)
+
+    # Maximum profit at optimal x
+    max_profit = alpha * optimal_x - beta * optimal_x**2 - c * optimal_x
+
+    return (optimal_x, max_profit)
+```
+
+
+
 ​
  
 
