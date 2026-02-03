@@ -184,3 +184,30 @@ def kelly_analysis(mu, sigma):
   return (optimal_leverage, max_return)
   pass
 ```
+
+## **Section 3: Stop-Loss Placement as an Optimization Problem**
+
+### **3.1 Why Stops Are a Tradeoff**
+A stop-loss automatically exits your position if the price drops to a certain level. But there's a fundamental tension:
+
+-Tight stops (close to entry): Limit losses but trigger frequently on normal volatility
+
+-Loose stops (far from entry): Rarely trigger but allow large losses when they do
+
+### **3.2 Expected Value Model**
+We can model expected profit using expected value: multiply each outcome by its probability and sum them up. With a stop-loss, there are two outcomes: you either win (hit your profit target) or lose (get stopped out).
+
+             E(s) = p(s)⋅G − (1−p(s))⋅s
+
+where:
+
+p(s) = probability of winning (reaching profit target before stop)
+
+G = gain if you win (fixed target)
+
+s = loss if stopped out
+
+The first term is your expected gain (probability of winning × gain), and the second term is your expected loss (probability of losing × loss amount).
+
+Key insight: 
+p(s) increases with s (looser stops are less likely to trigger).
