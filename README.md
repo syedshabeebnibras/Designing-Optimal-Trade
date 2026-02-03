@@ -114,7 +114,38 @@ def profit_analysis(alpha, beta, c):
 ```
 
 
+## **Section 2: Optimal Leverage and Risk Penalty**
 
-​
- 
+### **2.1 Introducing Leverage**
+Leverage lets you control more capital than you actually have. If you have $10,000 and use 3x leverage, you control $30,000 worth of assets, but you only put up $10,000 of your own money.
+
+The catch: leverage amplifies both gains AND losses. A 10% gain becomes 30%, but a 10% loss also becomes 30%.
+
+The Liquidation Problem
+
+Here's the critical insight: you can't lose money you borrowed, you can only lose your money. The broker won't let the position go negative on their funds.
+
+With 10x leverage on $10,000, you control $100,000. Your $10,000 is your margin, the buffer protecting the borrowed $90,000. If the position drops 10%, you lose $10,000 which is all your money. You get liquidated, the broker force-closes your position before it can lose their money.
+
+The formula: Liquidation % = 100% / Leverage
+
+At 20x leverage, a mere 5% dip wipes you out. Bitcoin moves 5% on a slow Tuesday.
+
+## **2.2 Risk-Penalized Return Function**
+A rational investor doesn't just maximize expected return, they penalize for risk. The risk-adjusted return with leverage ℓ is:
+
+              R(ℓ) = ℓ*μ − 0.5 * ℓ2 * σ2
+where:
+
+μ = expected return (e.g., 8% annually)
+
+σ = volatility (e.g., 20% annually)
+
+ℓ = leverage multiplier
+
+The term 
+0.5 * ℓ2 * σ2 is the risk penalty, it grows quadratically with leverage.
+
+
+
 
