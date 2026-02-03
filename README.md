@@ -131,7 +131,7 @@ The formula: Liquidation % = 100% / Leverage
 
 At 20x leverage, a mere 5% dip wipes you out. Bitcoin moves 5% on a slow Tuesday.
 
-## **2.2 Risk-Penalized Return Function**
+### **2.2 Risk-Penalized Return Function**
 A rational investor doesn't just maximize expected return, they penalize for risk. The risk-adjusted return with leverage ℓ is:
 
               R(ℓ) = ℓ*μ − 0.5 * ℓ2 * σ2
@@ -146,6 +146,14 @@ where:
 The term 
 0.5 * ℓ2 * σ2 is the risk penalty, it grows quadratically with leverage.
 
+### **2.3 Finding Optimal Leverage**
+Taking the derivative and setting to zero:
+
+                R′(ℓ) = μ − ℓ*σ2 = 0
+
+                ℓ∗ = μ / σ2
+
+This is the famous **Kelly Criterion** (in its simplest form)!
 
 
 
