@@ -155,5 +155,32 @@ Taking the derivative and setting to zero:
 
 This is the famous **Kelly Criterion** (in its simplest form)!
 
+### **2.4 Implementation: Kelly Criterion**
+```python
+def kelly_analysis(mu, sigma):
+  """
+  Analyze optimal leverage using the Kelly Criterion.
 
+  The risk-adjusted return is: R(ℓ) = ℓμ - (1/2)ℓ²σ²
+  Optimal leverage is: ℓ* = μ / σ²
 
+  Args:
+      mu: expected return (e.g., 0.08 for 8%)
+      sigma: volatility (e.g., 0.20 for 20%)
+
+  Returns:
+      tuple: (optimal_leverage, max_risk_adjusted_return)
+
+  Example:
+      >>> kelly_analysis(0.08, 0.20)
+      (2.0, 0.08)
+  """
+  import numpy as np
+  #TODO: Calculate optimal leverage ℓ* = μ / σ²
+  optimal_leverage = mu / (sigma ** 2)
+
+  #TODO: Calculate max risk-adjusted return at optimal leverage
+  max_return = optimal_leverage * mu - 0.5 * (optimal_leverage ** 2) * (sigma ** 2)
+  return (optimal_leverage, max_return)
+  pass
+```
