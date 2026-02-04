@@ -72,46 +72,6 @@ Ans: Diminishing returns gurantee an optimal interior point where costs start to
 
 Negative concavity means diminishing marginal returns: each additional unit contributes less than the previous one. Eventually, the marginal cost exceeds the marginal benefit, guaranteeing an interior maximum exists. This is why 'more is not always better in trading, there's a sweet spot where you stop.
 
-### **1.5 Sensitivity Analysis**
-How does the optimal trade size change when parameters change?
-
-Recall the formula:
-
-x∗ = (α − c) /  2β 
-​
-where 
-
-α is expected return per share, 
-
-c is transaction cost per share, and 
-
-β is the market impact coefficient.
-
-If transaction costs c increase, what happens to the optimal trade size x∗ ?
-
-Ans: x* decreases (trade less)
-WHY?
-
-From x* = (α - c) / (2β), increasing c decreases the numerator, so x* decreases. Higher costs make trading less attractive, so you should trade smaller sizes. This is intuitive, when trading is expensive, do less of it.
-
-### **1.6 Implementation: Profit Function?**
-Now let's implement what we've learned. Write a Python function that computes the profit and finds the optimal trade size.
-
-```python
-def profit_analysis(alpha, beta, c):
-    """
-    Analyze the profit function P(x) = αx - βx² - cx
-    """
-    import numpy as np
-
-    # Optimal trade size from first-order condition
-    optimal_x = (alpha - c) / (2 * beta)
-
-    # Maximum profit at optimal x
-    max_profit = alpha * optimal_x - beta * optimal_x**2 - c * optimal_x
-
-    return (optimal_x, max_profit)
-```
 
 
 ## **Section 2: Optimal Leverage and Risk Penalty**
@@ -155,35 +115,6 @@ Taking the derivative and setting to zero:
 
 This is the famous **Kelly Criterion** (in its simplest form)!
 
-### **2.4 Implementation: Kelly Criterion**
-```python
-def kelly_analysis(mu, sigma):
-  """
-  Analyze optimal leverage using the Kelly Criterion.
-
-  The risk-adjusted return is: R(ℓ) = ℓμ - (1/2)ℓ²σ²
-  Optimal leverage is: ℓ* = μ / σ²
-
-  Args:
-      mu: expected return (e.g., 0.08 for 8%)
-      sigma: volatility (e.g., 0.20 for 20%)
-
-  Returns:
-      tuple: (optimal_leverage, max_risk_adjusted_return)
-
-  Example:
-      >>> kelly_analysis(0.08, 0.20)
-      (2.0, 0.08)
-  """
-  import numpy as np
-  #TODO: Calculate optimal leverage ℓ* = μ / σ²
-  optimal_leverage = mu / (sigma ** 2)
-
-  #TODO: Calculate max risk-adjusted return at optimal leverage
-  max_return = optimal_leverage * mu - 0.5 * (optimal_leverage ** 2) * (sigma ** 2)
-  return (optimal_leverage, max_return)
-  pass
-```
 
 ## **Section 3: Stop-Loss Placement as an Optimization Problem**
 
@@ -211,3 +142,43 @@ The first term is your expected gain (probability of winning × gain), and the s
 
 Key insight: 
 p(s) increases with s (looser stops are less likely to trigger).
+
+
+## **Section 4: Execution Speed vs Slippage**
+### **4.1 Time as a Decision Variable**
+When you want to buy 10,000 shares, you don't have to buy them all at once. Execution speed is how quickly you complete your entire order, you could execute in seconds (aggressive) or spread it over hours (passive).
+
+Why does this matter? Because of slippage, the difference between the price you expected and the price you actually got. When you buy aggressively, you consume all available shares at the best price, then the next-best price, then worse prices. Your average fill price ends up higher than where the market started. That's slippage.
+
+When executing a trade, you face a tradeoff:
+
+-Fast execution: Get your order filled quickly, but pay more slippage (your buying pressure moves the price against you)
+
+-Slow execution: Minimize slippage by letting the market replenish between your orders, but risk the price drifting away while you wait (opportunity cost)
+
+### **4.2 Cost Function in Time**
+Let's model the total cost of executing over time t:
+
+           C(t)= k/t + λt
+
+Why this formula?
+
+Slippage cost = k/t: If you execute faster (smaller t), you hit the market harder, causing more slippage. The constant kcaptures how "impactful" your total order is. Spreading it over more time reduces the cost, hence k divided by t.
+
+Opportunity cost =λt: The longer you wait, the more the market can drift away from your target price. If the stock trends up while you're slowly buying, you miss the lower prices. This cost grows linearly with time, hence λ times t.
+
+The parameter λ represents how much the market typically moves per unit time (related to volatility and drift).
+
+4.3 Optimal Execution Time
+Taking the derivative:
+
+         C′(t) = − k/t**2 + λ = 0
+
+Solving:
+
+         t∗ =  $\sqrt{k/λ}$
+
+
+​
+ 
+​
