@@ -169,7 +169,7 @@ Opportunity cost =λt: The longer you wait, the more the market can drift away f
 
 The parameter λ represents how much the market typically moves per unit time (related to volatility and drift).
 
-4.3 Optimal Execution Time
+### **4.3 Optimal Execution Time**
 Taking the derivative:
 
          C′(t) = − k/t**2 + λ = 0
@@ -179,6 +179,24 @@ Solving:
          t∗ =  $\sqrt{k/λ}$
 
 
+
+## **Section 5: Synthesis and Reflection**
+### **5.1 Connecting the Pieces**
+In this project, you optimized four trading decisions:
+
+- Trade Size (x): x∗ = (α−c)/2β
+
+- Leverage (ℓ): ℓ∗ = μ/σ2
+
+- Stop-Loss (s): Found numerically
+
+- Execution Time (t): t∗ =  $\sqrt{k/λ}$
 ​
- 
-​
+
+​Notice the pattern: every optimal has an interior solution because:
+
+1. Benefits show diminishing returns
+
+2. Costs accelerate (often quadratically)
+
+3. The balance point is where marginal benefit = marginal cost
